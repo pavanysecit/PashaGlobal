@@ -18,7 +18,7 @@ private static AppiumDriver<MobileElement> driver;
 	public static void Mobile_PashaGlobal_SuperBet_URL_Login() throws InterruptedException, MalformedURLException {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("deviceName", "ASUS X00TD");
-		cap.setCapability("udid", "J9AAGF10J33379E");
+		cap.setCapability("udid", "JAAAGF10Z743V8H");
 		cap.setCapability("platformName", "Android");
 		cap.setCapability("platformVersion", "9");
 		cap.setCapability("browserName", "Chrome");

@@ -17,11 +17,11 @@ import io.appium.java_client.android.AndroidDriver;
 public class Mobile_PashaGlobal_URL_CardLogin {
 private static AppiumDriver<MobileElement> driver;
 	
-	@Before	
+	//@Before	
 	public static void Mobile_PashaGlobal_URL_CardLogin () throws InterruptedException, MalformedURLException {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("deviceName", "ASUS X00TD");
-		cap.setCapability("udid", "J9AAGF10J33379E");
+		cap.setCapability("udid", "JAAAGF10Z743V8H");
 		cap.setCapability("platformName", "Android");
 		cap.setCapability("platformVersion", "9");
 		cap.setCapability("browserName", "Chrome");

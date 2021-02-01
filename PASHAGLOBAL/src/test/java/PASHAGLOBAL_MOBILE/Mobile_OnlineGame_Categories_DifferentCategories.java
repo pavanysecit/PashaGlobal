@@ -27,7 +27,7 @@ public class Mobile_OnlineGame_Categories_DifferentCategories {
 
 	@When("^Mobile: Navigate to pasha global website by entering valid URL, click on online games link and click on each tab to find out category$")
 	public void mobile_navigate_to_pasha_global_website_by_entering_valid_URL_click_on_online_games_link_and_click_on_each_tab_to_find_out_category() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 90);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		//Clicking on different tab and verifying it
 		driver.getContext();
@@ -43,7 +43,7 @@ public class Mobile_OnlineGame_Categories_DifferentCategories {
 		//tab.isDisplayed();
 		//System.out.println(tab.isDisplayed());
 		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Tab_0")));
+		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("Tab_0")));
 		driver.findElement(By.id("Tab_0")).click();
 		Thread.sleep(3000);
 		String actual = driver.findElement(By.id("Tab_0")).getText();
