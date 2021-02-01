@@ -16,20 +16,19 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance {
+public class Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
+	public Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance() throws InterruptedException {
+		this.driver = Mobile_PashaGlobal_SuperBet_URL_Login.getDriver();
 	}
-	
-	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link, spin button and win amount$")
-	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_and_win_amount() throws Throwable {
+	@Given("^Mobile: Chrome browser, valid URL, login details, Online games link, balance, transfer button, Play Now link, spin button and win amount in super bet client$")
+	public void mobile_Chrome_browser_valid_URL_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_and_win_amount_in_super_bet_client() throws Throwable {
 	    
 	}
 
-	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, transfer the amount, click on spin button till user win and check the balance after win$")
-	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_transfer_the_amount_click_on_spin_button_till_user_win_and_check_the_balance_after_win() throws Throwable {
+	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter valid login details, transfer the amount to slot game, click on spin button till user win and check the balance after win in super bet$")
+	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_valid_login_details_transfer_the_amount_to_slot_game_click_on_spin_button_till_user_win_and_check_the_balance_after_win_in_super_bet() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
@@ -40,7 +39,7 @@ public class Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance {
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
+		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[6]/div[1]/div/div[1]/div"));
 		playnow.click();
 		Thread.sleep(5000);
 
@@ -53,35 +52,36 @@ public class Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance {
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
 		Thread.sleep(1000);
-		balT.sendKeys("555");
+		balT.sendKeys("800");
 		Thread.sleep(2000);
-		System.out.println("Transferring balance is: 555 ");
+		System.out.println("Transferring balance is: 800 ");
 		driver.findElement(By.className("Transfer_EGT_ok_but")).click();
 		Thread.sleep(5000);
 		driver.context("NATIVE_APP");
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hud_Hud_txtBalance1"))); 
 		String Sbalance = driver.findElement(By.id("hud_Hud_txtBalance1")).getText();
-		String expected = "555.00";
+		String expected = "800.00";
 		Assert.assertEquals(Sbalance, expected);
 		System.out.println("Current balance of the account is: " +Sbalance);
 		
 		//Selecting the credit as 1 from the drop down
 		driver.findElement(By.id("hud_txtCredit")).click();
-		driver.findElement(By.id("hud_CreditPopup41")).click();
+		Thread.sleep(1000);
+		driver.findElement(By.id("hud_CreditPopup25")).click();
 		
 		String actual1 = driver.findElement(By.id("hud_txtCredit")).getText();
 		System.out.println("Selected credit value is : " +actual1);
-		String expected1 = "1";
+		String expected1 = "5";
 		Assert.assertEquals(actual1, expected1);
 		
 		//Selecting the bet amount as 10 from the drop down
 		driver.findElement(By.id("hud_txtBetAmount")).click();
-		driver.findElement(By.id("hud_BetPopup210")).click();
+		driver.findElement(By.id("hud_BetPopup150")).click();
 		Thread.sleep(2000);
 		
 		String actual2 = driver.findElement(By.id("hud_txtBetAmount")).getText();
-		String expected2 = "10";
+		String expected2 = "50";
 		System.out.println("Selected Bet Amount is : " +actual2);
 		Assert.assertEquals(actual2, expected2);
 		
@@ -90,7 +90,6 @@ public class Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance {
 		start.click();
 		Thread.sleep(2000);
 
-		
 		//Getting win amount
 		MobileElement winE = driver.findElement(By.id("hud_Hud_txtWin1"));
 		
@@ -151,7 +150,7 @@ public class Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance {
 		String fbal = String.format("%.2f", conValue1); 
 		
 		//After Refresh - Wait for 3 seconds to auto refresh
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		String str111 = driver.findElement(By.id("DisplayBalance1")).getText();
 		StringBuffer str21 = new StringBuffer(str111);
 		System.out.println(str21.replace(0,7,""));
@@ -162,9 +161,8 @@ public class Mobile_OnlineGames_Balance_Check_WinAmount_AddedToBalance {
 		Assert.assertEquals(fbal, ARbalance);
 	}
 
-	@Then("^Mobile: Win amount should get added to the main balance after win and balance should get added to the main balance after closing slot game$")
-	public void mobile_Win_amount_should_get_added_to_the_main_balance_after_win_and_balance_should_get_added_to_the_main_balance_after_closing_slot_game() throws Throwable {
-		Thread.sleep(3000);
+	@Then("^Mobile: Win amount should get added to the main slot balance after win and balance should get added to the main account card balance after closing slot game in superbet client$")
+	public void mobile_Win_amount_should_get_added_to_the_main_slot_balance_after_win_and_balance_should_get_added_to_the_main_account_card_balance_after_closing_slot_game_in_superbet_client() throws Throwable {
 		driver.quit();
 	}
 }

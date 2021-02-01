@@ -8,20 +8,20 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import cucumber.api.java.Before;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 
-
-public class Mobile_PashaGlobal_URL_Login {
+public class Mobile_PashaGlobal_URL_CardLogin {
 private static AppiumDriver<MobileElement> driver;
 	
-	//@Before	
-	public static void Mobile_PashaGlobal_URL_Login() throws InterruptedException, MalformedURLException {
+	@Before	
+	public static void Mobile_PashaGlobal_URL_CardLogin () throws InterruptedException, MalformedURLException {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("deviceName", "ASUS X00TD");
-		cap.setCapability("udid", "JAAAGF10Z743V8H");
+		cap.setCapability("udid", "J9AAGF10J33379E");
 		cap.setCapability("platformName", "Android");
 		cap.setCapability("platformVersion", "9");
 		cap.setCapability("browserName", "Chrome");
@@ -30,7 +30,7 @@ private static AppiumDriver<MobileElement> driver;
 		cap.setCapability("ignoreUnimportantViews", true);
 		cap.setCapability("disableAndroidWatchers", true);
 		
-		URL url=new URL("http://10.10.13.84:4723/wd/hub");
+		URL url=new URL("http://0.0.0.0:4723/wd/hub");
 		
 		driver=new AndroidDriver<MobileElement>(url,cap);
 		
@@ -41,19 +41,19 @@ private static AppiumDriver<MobileElement> driver;
 
 		
 	   //clicking on login button and entering valid credentials
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("UnserlnkLogin")));
 		driver.findElement(By.id("UnserlnkLogin")).click();
 		Thread.sleep(2000);
-		driver.findElement(By.xpath("/html/body/div[18]/div[1]/div/div/div[1]/div[1]/div/div[2]/ul/li[1]/div")).click();
-		Thread.sleep(1000);
+//		driver.findElement(By.xpath("/html/body/div[18]/div[1]/div/div/div[1]/div[1]/div/div[2]/ul/li[1]/div")).click();
+//		Thread.sleep(1000);
 		
-		driver.findElement(By.id("txt_Login_Email")).sendKeys("pmansoorktr@gmail.com");
+		driver.findElement(By.id("txt_Login_Email")).sendKeys("2111649489988826");
 		Thread.sleep(1000);
-		driver.findElement(By.id("txt_login_password")).sendKeys("mansoor@123");
+		driver.findElement(By.id("txt_login_password")).sendKeys("1125");
 		Thread.sleep(1000);
 		driver.findElement(By.id("btnLogin")).click();
-		Thread.sleep(8000);
+		Thread.sleep(10000);
 		
 		String parent1=driver.getWindowHandle();
 		Set<String>s1=driver.getWindowHandles();

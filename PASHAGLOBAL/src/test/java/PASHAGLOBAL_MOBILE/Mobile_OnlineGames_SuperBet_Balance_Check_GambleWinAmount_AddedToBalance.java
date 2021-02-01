@@ -6,49 +6,42 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
+public class Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBalance {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
+	public Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException {
+		this.driver = Mobile_PashaGlobal_SuperBet_URL_Login.getDriver();
 	}
-	
-	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link, spin button , win amount, Red button and collect button$")
-	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_win_amount_Red_button_and_collect_button() throws Throwable {
-	    
+	@Given("^Mobile: Chrome browser, valid URL, valid superbet client login details, Online games link, balance, transfer button, Play Now link, spin button , win amount, Red button and collect button$")
+	public void mobile_Chrome_browser_valid_URL_valid_superbet_client_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_win_amount_Red_button_and_collect_button() throws Throwable {
+
 	}
 
-	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, transfer the amount, click on spin button till user win , Click on Gamble button, Click on Red button and check the balance after Gamble win$")
-	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_transfer_the_amount_click_on_spin_button_till_user_win_Click_on_Gamble_button_Click_on_Red_button_and_check_the_balance_after_Gamble_win() throws Throwable {
+	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid super bet login details, transfer the amount, click on spin button till user win , Click on Gamble button, Click on Red button and check the balance after Gamble win$")
+	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_super_bet_login_details_transfer_the_amount_click_on_spin_button_till_user_win_Click_on_Gamble_button_Click_on_Red_button_and_check_the_balance_after_Gamble_win() throws Throwable {
 		WebDriverWait wait = new WebDriverWait(driver, 60);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
+		
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
 		System.out.println("balance: "+str11);
-		
-		//Checking the currency type in balance field
-		String MbalanceLabel = driver.findElement(By.id("DisplayBalance2")).getText();
-		String expectedMBal = "SRD";
-		Assert.assertEquals(MbalanceLabel, expectedMBal);
-		Thread.sleep(1000);
-		System.out.println("Label of the currency for Main Balance field is: " +MbalanceLabel);
+		//Clicking on GameInfo link
 
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-//		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-//		playnow.click();
-//		Thread.sleep(5000);
-		
-		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
+		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[6]/div[1]/div/div[1]/div"));
+		playnow.click();
 		Thread.sleep(5000);
+		
+//		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
+//		Thread.sleep(5000);
 		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));
 		String parentWindow = driver.getWindowHandle();
@@ -72,12 +65,6 @@ public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
 		Assert.assertEquals(Sbalance, expected);
 		System.out.println("Current balance of the account is: " +Sbalance);
 		
-		//Checking the currency type in balance field
-		String MbalLabel = driver.findElement(By.id("hud_Hud_txtBalance2")).getText();
-		String expectedBal = "SRD";
-		Assert.assertEquals(MbalLabel, expectedBal);
-		Thread.sleep(1000);
-		System.out.println("Label of the currency for Balance field is: " +MbalLabel);
 		
 		//Clicking on start button
 		MobileElement start = driver.findElement(By.id("hud_btnSpin"));
@@ -101,36 +88,29 @@ public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
 		String balance1 = driver.findElement(By.id("hud_Hud_txtBalance1")).getText();
 		System.out.println("Balance amount before clicking on gamble link :"+balance1);
 
-		//Checking the currency type in Win field
-		String winLabel = driver.findElement(By.id("hud_Hud_txtWin2")).getText();
-		String expectedwinLabel = "SRD";
-		Assert.assertEquals(winLabel, expectedwinLabel);
-		Thread.sleep(1000);
-		System.out.println("Label of the currency for Win field is: " +winLabel);
-		
 		driver.findElement(By.id("hud_btnGamble")).click();	
 		Thread.sleep(2000);
 		String gAmount = driver.findElement(By.id("gamble_txtGambleAmount")).getText();
 		System.out.println("Gamble amount is :"+gAmount);
 		Thread.sleep(2000);
 		
-		String gambleamt = gAmount.replaceAll(" SRD", "");
+		String gambleamt = gAmount.replaceAll(" GYD", "");
 		System.out.println("Gamble amount after split is :"+gambleamt);
 
 		String colorwin = driver.findElement(By.id("gamble_txtWin")).getText();
-		String gamblewin = colorwin.replaceAll(" SRD", "");
+		String gamblewin = colorwin.replaceAll(" GYD", "");
 		System.out.println("Gamble to win amount after split is :"+gamblewin);
 		System.out.println("Gamble to win amount is: " +colorwin);
 		driver.findElement(By.id("gamble_btnRed")).click();
-		Thread.sleep(1800);
+		Thread.sleep(1200);
 		
 		String gAmount1 = driver.findElement(By.id("gamble_txtGambleAmount")).getText();
-		String gambleamtafter = gAmount1.replaceAll(" SRD", "");
+		String gambleamtafter = gAmount1.replaceAll(" GYD", "");
 		System.out.println("Gamble amount after selecting red or black button: "+gambleamtafter);
 
 		if(gamblewin.equalsIgnoreCase(gambleamtafter)) {
 			String gAmount11 = driver.findElement(By.id("gamble_txtGambleAmount")).getText();
-			String gamble1 = gAmount11.replaceAll(" SRD", "");
+			String gamble1 = gAmount11.replaceAll(" GYD", "");
 			
             /*
              * Here we are comparing the gamble win amount field before and after after winning in the gamble page.
@@ -196,9 +176,8 @@ public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
 		Assert.assertEquals(fbal, ARbalance);
 	}
 
-	@Then("^Mobile: Gamble Win amount should get added to the main balance after win and balance should get added to the main balance after closing slot game$")
-	public void mobile_Gamble_Win_amount_should_get_added_to_the_main_balance_after_win_and_balance_should_get_added_to_the_main_balance_after_closing_slot_game() throws Throwable {
-		Thread.sleep(3000);
+	@Then("^Mobile: Gamble Win amount should get added to the game main balance after win and balance should get added to the main  balance after closing slot game in superbet client$")
+	public void mobile_Gamble_Win_amount_should_get_added_to_the_game_main_balance_after_win_and_balance_should_get_added_to_the_main_balance_after_closing_slot_game_in_superbet_client() throws Throwable {
 		driver.quit();
 	}
 }
