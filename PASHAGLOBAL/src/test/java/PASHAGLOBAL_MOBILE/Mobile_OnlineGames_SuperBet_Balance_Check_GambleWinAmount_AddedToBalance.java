@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -12,12 +14,13 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBalance {
+public class Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBalance extends Mobile_PashaGlobal_SuperBet_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_SuperBet_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_SuperBet_URL_Login();
+		}
+
 	@Given("^Mobile: Chrome browser, valid URL, valid superbet client login details, Online games link, balance, transfer button, Play Now link, spin button , win amount, Red button and collect button$")
 	public void mobile_Chrome_browser_valid_URL_valid_superbet_client_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_win_amount_Red_button_and_collect_button() throws Throwable {
 
@@ -25,7 +28,7 @@ public class Mobile_OnlineGames_SuperBet_Balance_Check_GambleWinAmount_AddedToBa
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid super bet login details, transfer the amount, click on spin button till user win , Click on Gamble button, Click on Red button and check the balance after Gamble win$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_super_bet_login_details_transfer_the_amount_click_on_spin_button_till_user_win_Click_on_Gamble_button_Click_on_Red_button_and_check_the_balance_after_Gamble_win() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();

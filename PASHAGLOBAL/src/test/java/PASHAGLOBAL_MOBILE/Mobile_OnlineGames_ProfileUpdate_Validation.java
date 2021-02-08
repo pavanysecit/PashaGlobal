@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -16,12 +18,12 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 
 
-public class Mobile_OnlineGames_ProfileUpdate_Validation {
+public class Mobile_OnlineGames_ProfileUpdate_Validation extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_ProfileUpdate_Validation() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_ProfileUpdate_Validation() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Profile link, profile tab password, Profile update tab, submit button, successfull message$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Profile_link_profile_tab_password_Profile_update_tab_submit_button_successfull_message() throws Throwable {
@@ -31,7 +33,7 @@ public class Mobile_OnlineGames_ProfileUpdate_Validation {
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, click on profile link and fill the login credentials and update the profile summary$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_click_on_profile_link_and_fill_the_login_credentials_and_update_the_profile_summary() throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 
 		WebElement ham = driver.findElement(By.id("HambergerMenuBtn"));
@@ -145,10 +147,10 @@ public class Mobile_OnlineGames_ProfileUpdate_Validation {
 		Thread.sleep(2000);
 		driver.switchTo().alert();
 		Thread.sleep(2000);
-		text.sendKeys("mans@123");
+		text.sendKeys("mansoor@123");
 		submit.click();
 		Thread.sleep(5000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@class ='Qr_code_w']/img")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.className("Qr_code_w")));
 
 		//Change the name to older 
 		WebElement FirstName1 = driver.findElement(By.id("profile_first_name"));

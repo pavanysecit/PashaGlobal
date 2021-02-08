@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,12 +15,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGame_Categories_DifferentCategories {
+public class Mobile_OnlineGame_Categories_DifferentCategories extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_Categories_DifferentCategories() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_Categories_DifferentCategories() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, Go button, valid login details, Online games link and different tabs for each game categories$")
 	public void mobile_chrome_browser_valid_URL_Go_button_valid_login_details_Online_games_link_and_different_tabs_for_each_game_categories() throws Throwable {
@@ -27,7 +29,7 @@ public class Mobile_OnlineGame_Categories_DifferentCategories {
 
 	@When("^Mobile: Navigate to pasha global website by entering valid URL, click on online games link and click on each tab to find out category$")
 	public void mobile_navigate_to_pasha_global_website_by_entering_valid_URL_click_on_online_games_link_and_click_on_each_tab_to_find_out_category() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		//Clicking on different tab and verifying it
 		driver.getContext();
@@ -39,7 +41,7 @@ public class Mobile_OnlineGame_Categories_DifferentCategories {
 //		Thread.sleep(5000);
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		//tab.isDisplayed();
 		//System.out.println(tab.isDisplayed());
 		
@@ -78,6 +80,7 @@ public class Mobile_OnlineGame_Categories_DifferentCategories {
 		String expected4 = "Roulettes";
 		Assert.assertEquals(expected4, actual4);
 		Thread.sleep(2000);
+		System.out.println("All tabs are clickied and loaded successfully. Testcase passed.");
 	}
 
 	@Then("^Mobile: User should able to navigate to different tabs for each category$")

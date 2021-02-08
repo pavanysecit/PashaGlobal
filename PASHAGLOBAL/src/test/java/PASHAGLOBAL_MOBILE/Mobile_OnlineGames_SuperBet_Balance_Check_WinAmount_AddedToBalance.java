@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -16,12 +17,13 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance {
+public class Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance extends Mobile_PashaGlobal_SuperBet_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_SuperBet_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_SuperBet_URL_Login();
+		}
+	
 	@Given("^Mobile: Chrome browser, valid URL, login details, Online games link, balance, transfer button, Play Now link, spin button and win amount in super bet client$")
 	public void mobile_Chrome_browser_valid_URL_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_and_win_amount_in_super_bet_client() throws Throwable {
 	    
@@ -29,7 +31,7 @@ public class Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance 
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter valid login details, transfer the amount to slot game, click on spin button till user win and check the balance after win in super bet$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_valid_login_details_transfer_the_amount_to_slot_game_click_on_spin_button_till_user_win_and_check_the_balance_after_win_in_super_bet() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
 		System.out.println("balance: "+str11);

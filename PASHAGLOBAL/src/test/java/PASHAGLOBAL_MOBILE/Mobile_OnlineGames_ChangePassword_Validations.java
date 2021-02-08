@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,12 +13,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGames_ChangePassword_Validations {
+public class Mobile_OnlineGames_ChangePassword_Validations extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_ChangePassword_Validations() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_ChangePassword_Validations() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, change password window, old password textbox, new password textbox, confirm password textbox and submit button$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_change_password_window_old_password_textbox_new_password_textbox_confirm_password_textbox_and_submit_button() throws Throwable {
@@ -25,7 +27,7 @@ public class Mobile_OnlineGames_ChangePassword_Validations {
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, click on change password link, enter old password, enter new password, enter confirm password and click on submit button$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_click_on_change_password_link_enter_old_password_enter_new_password_enter_confirm_password_and_click_on_submit_button() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		
 		driver.findElement(By.id("HambergerMenuBtn")).click();
@@ -115,11 +117,15 @@ public class Mobile_OnlineGames_ChangePassword_Validations {
 	
 		
 		//Changing password successfully
+		oldpwd.clear();
+		Thread.sleep(1000);
 		newpwd.clear();
 		Thread.sleep(1000);
 		confpwd.clear();
 		Thread.sleep(1000);
 		
+		oldpwd.sendKeys("mansoor@123");
+		Thread.sleep(1000);
 		newpwd.sendKeys("mans@123");
 		Thread.sleep(1000);
 		confpwd.sendKeys("mans@123");
@@ -138,23 +144,53 @@ public class Mobile_OnlineGames_ChangePassword_Validations {
 		
 		//Reverting new password to old password
 		driver.findElement(By.id("HambergerMenuBtn")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.linkText("Log out")).click();
+		Thread.sleep(6000);
+		driver.findElement(By.id("UnserlnkLogin")).click();
+		Thread.sleep(2000);
+		driver.findElement(By.xpath("/html/body/div[18]/div[1]/div/div/div[1]/div[1]/div/div[2]/ul/li[1]/div")).click();
+		Thread.sleep(1000);
+		
+		driver.findElement(By.id("txt_Login_Email")).sendKeys("pmansoorktr@gmail.com");
+		Thread.sleep(1000);
+		driver.findElement(By.id("txt_login_password")).sendKeys("mans@123");
+		Thread.sleep(1000);
+		driver.findElement(By.id("btnLogin")).click();
+		Thread.sleep(8000);
+		
+		
+		driver.findElement(By.id("HambergerMenuBtn")).click();
 		Thread.sleep(2000);
 		driver.findElement(By.cssSelector(".CHANGE_PASSWORD.all_popup_but")).click();
 		Thread.sleep(5000);
-
-		oldpwd.sendKeys("mans@123");
+		
+		WebElement oldpwd1 = driver.findElement(By.id("txt_Old_Password"));
+		oldpwd1.sendKeys("mans@123");
 		Thread.sleep(1000);
 		
-		newpwd.sendKeys("mansoor1@123");
+		WebElement newpwd1 = driver.findElement(By.id("txt_New_password"));
+		newpwd1.sendKeys("mansoor@123");
 		Thread.sleep(1000);
 		
-		confpwd.sendKeys("mansoor2@123");
+		WebElement confpwd1 = driver.findElement(By.id("txt_chag_Confirm_Password"));
+		confpwd1.sendKeys("mansoor@123");
 		Thread.sleep(1000);
+		
 		
 		driver.findElement(By.id("changePassword")).click();
 		Thread.sleep(3000);
+		
+		String actual32 = driver.findElement(By.xpath("//*[@id='changePassContent']/p")).getText();
+		String expected32= "Password changed successfully";
+		
+		System.out.println("Confirmation message after changing password after revert: " +actual32);
+		Thread.sleep(1000);
+		Assert.assertEquals(actual32, expected32);
 		driver.findElement(By.xpath("//*[@id='ChangePassword']/div/h3/label")).click();
 		Thread.sleep(2000);
+		
+		
 	}
 
 	@Then("^Mobile: System should display validation message if new password and confirm password are not same$")

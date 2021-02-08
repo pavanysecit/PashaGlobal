@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -11,16 +13,17 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGame_Cardmode_Transaction {
+public class Mobile_OnlineGame_Cardmode_Transaction extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_Cardmode_Transaction() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_Cardmode_Transaction() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
+	
 	@Given("^Mobile: Chrome browser, valid URL, Valid login credentials, card details login, and authenticated card$")
 	public void mobile_Chrome_browser_valid_URL_Valid_login_credentials_card_details_login_and_authenticated_card() throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 	}
 
@@ -198,8 +201,9 @@ public class Mobile_OnlineGame_Cardmode_Transaction {
 			cb1 = rbal2;
 			System.out.println("Card Balance amount doesn't ends with '0'.");
 		}
-
-		Assert.assertEquals(rbal1,cb1 );
+		String str44 = rbal1.replaceAll(",", "");
+		String cb2 = rbal1.replaceAll(",", "");
+		Assert.assertEquals(str44,cb2);
 		System.out.println("Refresh balance verified");
 
 
@@ -254,13 +258,10 @@ public class Mobile_OnlineGame_Cardmode_Transaction {
 	public void mobile_Verify_the_balance_in_card_before_and_after_switching_the_mode_of_transacations() throws Throwable {
 
 		// Logoff from the device 
-		WebElement hamburger = driver.findElement(By.id("HambergerMenuBtn"));
-		hamburger.click();
-		Thread.sleep(2000);
-		WebElement logoff = driver.findElement(By.linkText("Log off"));
-		logoff.click();
-		Thread.sleep(5000);
-
+		driver.findElement(By.id("HambergerMenuBtn")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.linkText("Log out")).click();
+		Thread.sleep(6000);
 	}
 
 	@Then("^Movile: Verify the balance after reloading/refresh the balance in card mode of transcations$")

@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Set;
 
@@ -16,12 +17,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGame_MainBalance_Refresh {
+public class Mobile_OnlineGame_MainBalance_Refresh extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_MainBalance_Refresh() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_MainBalance_Refresh() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, Go button, valid login details, Online games link, Play Now link and  balance refresh$")
 	public void mobile_Chrome_browser_valid_URL_Go_button_valid_login_details_Online_games_link_Play_Now_link_and_balance_refresh() throws Throwable {
@@ -30,7 +31,7 @@ public class Mobile_OnlineGame_MainBalance_Refresh {
 
 	@When("^Mobile: Navigate to pasha global website by entering valid URL, click on online games link, click on Play Now link on any slot game and go back to main page$")
 	public void mobile_Navigate_to_pasha_global_website_by_entering_valid_URL_click_on_online_games_link_click_on_Play_Now_link_on_any_slot_game_and_go_back_to_main_page() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 160);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		//Clicking on GameInfo link
 
@@ -76,7 +77,8 @@ public class Mobile_OnlineGame_MainBalance_Refresh {
 		String str1 = driver.findElement(By.id("DisplayBalance1")).getText();
 		StringBuffer str2 = new StringBuffer(str1);
 		System.out.println(str2.replace(0,7,""));
-		String Rbalance = str2.toString();
+		String str3 = str2.toString();
+		String Rbalance = str3.replaceAll(",", ""); 
 		System.out.println("Balance after returning from slot game to home page is: " +Rbalance);
 		
 		double conValue = Double.parseDouble(Mbalance) - Double.parseDouble(Sbalance);

@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.util.Set;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -12,12 +13,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGame_Multiptile_LoginSessions {
+public class Mobile_OnlineGame_Multiptile_LoginSessions extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_Multiptile_LoginSessions() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_Multiptile_LoginSessions() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link, spin button , another game window tab$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_another_game_window_tab() throws Throwable {
@@ -112,8 +113,8 @@ public class Mobile_OnlineGame_Multiptile_LoginSessions {
 		start1.click();
 		Thread.sleep(2000);
 		
-		Set<String>s1=driver.getWindowHandles();
-		System.out.println("Window for slot game is"+" "+s1);
+//		Set<String>s1=driver.getWindowHandles();
+//		System.out.println("Window for slot game is"+" "+s1);
 		
 	}
 

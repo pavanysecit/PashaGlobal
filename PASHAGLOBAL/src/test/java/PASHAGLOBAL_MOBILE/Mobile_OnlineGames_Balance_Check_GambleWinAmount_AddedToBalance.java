@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,12 +15,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
+public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link, spin button , win amount, Red button and collect button$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_win_amount_Red_button_and_collect_button() throws Throwable {
@@ -27,7 +29,7 @@ public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, transfer the amount, click on spin button till user win , Click on Gamble button, Click on Red button and check the balance after Gamble win$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_transfer_the_amount_click_on_spin_button_till_user_win_Click_on_Gamble_button_Click_on_Red_button_and_check_the_balance_after_Gamble_win() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
 		System.out.println("balance: "+str11);
@@ -122,7 +124,7 @@ public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
 		System.out.println("Gamble to win amount after split is :"+gamblewin);
 		System.out.println("Gamble to win amount is: " +colorwin);
 		driver.findElement(By.id("gamble_btnRed")).click();
-		Thread.sleep(1800);
+		Thread.sleep(1200);
 		
 		String gAmount1 = driver.findElement(By.id("gamble_txtGambleAmount")).getText();
 		String gambleamtafter = gAmount1.replaceAll(" SRD", "");
@@ -179,21 +181,23 @@ public class Mobile_OnlineGames_Balance_Check_GambleWinAmount_AddedToBalance {
 		System.out.println(str4.replace(0,7,""));
 		String Rbalance = str4.toString();
 		System.out.println("Balance after returning from Gamble page to home page is and before auto refresh: " +Rbalance);
-		
+		String Rbalance1 = Rbalance.replaceAll(",", "");
 		// Adding slot game final balance + main balance before refreshing should be same as balance after refresh
-		double conValue1 = Double.parseDouble(Balance) + Double.parseDouble(Rbalance);
+		double conValue1 = Double.parseDouble(Balance) + Double.parseDouble(Rbalance1);
 		String fbal = String.format("%.2f", conValue1); 
 		
 		//After Refresh - Wait for 3 seconds to auto refresh
-		Thread.sleep(3000);
+		Thread.sleep(5000);
 		String str111 = driver.findElement(By.id("DisplayBalance1")).getText();
 		StringBuffer str21 = new StringBuffer(str111);
 		System.out.println(str21.replace(0,7,""));
 		String ARbalance = str21.toString();
 		System.out.println("Balance after refreshing automatically is: " +ARbalance);
-		
+		Thread.sleep(5000);
 		//Balance should be same
-		Assert.assertEquals(fbal, ARbalance);
+		String fbal1 = fbal.replaceAll(",", "");
+		String ARbalance1 = ARbalance.replaceAll(",", "");
+		Assert.assertEquals(fbal1, ARbalance1);
 	}
 
 	@Then("^Mobile: Gamble Win amount should get added to the main balance after win and balance should get added to the main balance after closing slot game$")

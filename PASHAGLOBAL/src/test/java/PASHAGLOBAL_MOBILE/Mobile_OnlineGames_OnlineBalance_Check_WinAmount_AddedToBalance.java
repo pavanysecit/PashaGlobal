@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -16,12 +17,12 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance {
+public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link, spin button and win amount$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_and_win_amount() throws Throwable {
@@ -30,7 +31,7 @@ public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance {
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, transfer the amount, click on spin button till user win and check the balance after win$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_transfer_the_amount_click_on_spin_button_till_user_win_and_check_the_balance_after_win() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
 		System.out.println("balance: "+str11);
@@ -66,24 +67,24 @@ public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance {
 		Assert.assertEquals(Sbalance, expected);
 		System.out.println("Current balance of the account is: " +Sbalance);
 		
-		//Selecting the credit as 1 from the drop down
-		driver.findElement(By.id("hud_txtCredit")).click();
-		driver.findElement(By.id("hud_CreditPopup41")).click();
-		
-		String actual1 = driver.findElement(By.id("hud_txtCredit")).getText();
-		System.out.println("Selected credit value is : " +actual1);
-		String expected1 = "1";
-		Assert.assertEquals(actual1, expected1);
-		
-		//Selecting the bet amount as 10 from the drop down
-		driver.findElement(By.id("hud_txtBetAmount")).click();
-		driver.findElement(By.id("hud_BetPopup210")).click();
-		Thread.sleep(2000);
-		
-		String actual2 = driver.findElement(By.id("hud_txtBetAmount")).getText();
-		String expected2 = "10";
-		System.out.println("Selected Bet Amount is : " +actual2);
-		Assert.assertEquals(actual2, expected2);
+//		//Selecting the credit as 1 from the drop down
+//		driver.findElement(By.id("hud_txtCredit")).click();
+//		driver.findElement(By.id("hud_CreditPopup41")).click();
+//		
+//		String actual1 = driver.findElement(By.id("hud_txtCredit")).getText();
+//		System.out.println("Selected credit value is : " +actual1);
+//		String expected1 = "1";
+//		Assert.assertEquals(actual1, expected1);
+//		
+//		//Selecting the bet amount as 10 from the drop down
+//		driver.findElement(By.id("hud_txtBetAmount")).click();
+//		driver.findElement(By.id("hud_BetPopup210")).click();
+//		Thread.sleep(2000);
+//		
+//		String actual2 = driver.findElement(By.id("hud_txtBetAmount")).getText();
+//		String expected2 = "10";
+//		System.out.println("Selected Bet Amount is : " +actual2);
+//		Assert.assertEquals(actual2, expected2);
 		
 		//Clicking on start button
 		MobileElement start = driver.findElement(By.id("hud_btnSpin"));
@@ -143,7 +144,8 @@ public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance {
 		String str3 = driver.findElement(By.id("DisplayBalance1")).getText();
 		StringBuffer str4 = new StringBuffer(str3);
 		System.out.println(str4.replace(0,7,""));
-		String Rbalance = str4.toString();
+		String str5 = str4.toString();
+		String Rbalance = str5.replaceAll(",", "");
 		System.out.println("Balance after returning from slot game to home page is and before auto refresh: " +Rbalance);
 	
 		// Adding slot game final balance + main balance before refreshing should be same as balance after refresh
@@ -151,15 +153,16 @@ public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance {
 		String fbal = String.format("%.2f", conValue1); 
 		
 		//After Refresh - Wait for 3 seconds to auto refresh
-		Thread.sleep(3000);
+		Thread.sleep(6000);
 		String str111 = driver.findElement(By.id("DisplayBalance1")).getText();
 		StringBuffer str21 = new StringBuffer(str111);
 		System.out.println(str21.replace(0,7,""));
 		String ARbalance = str21.toString();
-		System.out.println("Balance after refreshing automatically is: " +ARbalance);
+		String str7 = ARbalance.replaceAll(",", "");
+		System.out.println("Balance after refreshing automatically is: " +str7);
 		
 		//Balance should be same
-		Assert.assertEquals(fbal, ARbalance);
+		Assert.assertEquals(fbal, str7);
 	}
 
 	@Then("^Mobile: Win amount should get added to the main balance after win and balance should get added to the main balance after closing slot game$")

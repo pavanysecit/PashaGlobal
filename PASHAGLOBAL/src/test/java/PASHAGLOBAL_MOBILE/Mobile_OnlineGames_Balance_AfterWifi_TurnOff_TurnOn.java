@@ -1,6 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
 import java.io.File;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 
 import org.junit.Assert;
@@ -24,15 +25,14 @@ import io.appium.java_client.android.connection.ConnectionState;
 import io.appium.java_client.android.connection.ConnectionStateBuilder;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.Tesseract;
 
-public class Mobile_OnlineGames_Balance_AfterWifi_TurnOff_TurnOn {
+
+public class Mobile_OnlineGames_Balance_AfterWifi_TurnOff_TurnOn extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_Balance_AfterWifi_TurnOff_TurnOn() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_Balance_AfterWifi_TurnOff_TurnOn() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link and wifi button$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_and_wifi_button() throws Throwable {
@@ -41,7 +41,7 @@ public class Mobile_OnlineGames_Balance_AfterWifi_TurnOff_TurnOn {
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, transfer the amount, check balance, turn off wifi & turn on wifi after few min, and check amount added to balance$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_transfer_the_amount_check_balance_turn_off_wifi_turn_on_wifi_after_few_min_and_check_amount_added_to_balance() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();

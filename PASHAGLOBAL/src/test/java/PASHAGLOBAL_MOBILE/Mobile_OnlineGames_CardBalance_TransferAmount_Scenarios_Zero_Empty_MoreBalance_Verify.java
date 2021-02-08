@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.util.Set;
 
 import org.junit.Assert;
@@ -14,12 +15,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_MoreBalance_Verify {
+public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_MoreBalance_Verify extends Mobile_PashaGlobal_URL_CardLogin  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_MoreBalance_Verify() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_MoreBalance_Verify() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_CardLogin();
+		}
 	
 	@Given("^Chrome browser, valid URL, valid login details, online games, balance, Card login, text field to transfer balance and Ok button$")
 	public void chrome_browser_valid_URL_valid_login_details_online_games_balance_Card_login_text_field_to_transfer_balance_and_Ok_button() throws Throwable {
@@ -28,7 +29,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 
 	@When("^Open the any online slot game by entering the valid URL in browser, enter the valid login details, click on Play button, switch to card login, enter the valid amount to transfer and click on Ok butotn$")
 	public void open_the_any_online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_click_on_Play_button_switch_to_card_login_enter_the_valid_amount_to_transfer_and_click_on_Ok_butotn() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		
 		driver.findElement(By.id("nav-dropbtn")).click();
@@ -107,7 +108,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		Thread.sleep(4000);
 
 		String actual = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String expected = "Entered Amount should not be Greater than Current balance!";
+	    String expected = "Entered Amount Should not be Greater then Current balance!";
 	    Assert.assertEquals(actual, expected);
 	    Thread.sleep(2000);
  
@@ -121,7 +122,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		Thread.sleep(3000);
 		
 		String expected1 = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String actual1 = "Entered Amount is not in correct format!";
+	    String actual1 = "Please Enter Amount To Transfer!";
 	    System.out.println("Validation Message displayed is: " +expected1);
 	    Assert.assertEquals(expected1, actual1);
 	}
@@ -137,7 +138,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		Thread.sleep(2000);
 		
 		String expected2 = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String actual2 = "Entered Amount should be greater than Zero!";
+	    String actual2 = "Entered Amount should be greater then Zero!";
 	    System.out.println("Validation message displayed is: " +expected2);
 	    Assert.assertEquals(expected2, actual2);
 	}

@@ -4,14 +4,10 @@ import java.net.URL;
 
 import org.junit.Assert;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
-
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -37,7 +33,7 @@ public class Mobile_PashaGlobal_Check_ValidURL {
 		System.out.println("Appium started sucessfully");
 		//driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		driver.get("https://pashaglobal.com/");
+		driver.get("https://onlinegames.pashaglobal.com");
 		Thread.sleep(3000);
 
 	}

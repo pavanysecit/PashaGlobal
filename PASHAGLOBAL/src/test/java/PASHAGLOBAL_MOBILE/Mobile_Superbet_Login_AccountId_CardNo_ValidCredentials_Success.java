@@ -27,7 +27,7 @@ public class Mobile_Superbet_Login_AccountId_CardNo_ValidCredentials_Success {
 	public void mobile_Open_the_chrome_browser_Enter_the_valid_URL_click_on_Go_button_select_the_super_bet_client_click_on_login_button_enter_valid_account_id_password_with_both_mail_and_account_id_and_click_on_Login_butotn() throws Throwable {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("deviceName", "ASUS X00TD");
-		cap.setCapability("udid", "J9AAGF10J33379E");
+		cap.setCapability("udid", "JAAAGF10Z743V8H");
 		cap.setCapability("platformName", "Android");
 		cap.setCapability("platformVersion", "9");
 		cap.setCapability("browserName", "Chrome");
@@ -43,10 +43,10 @@ public class Mobile_Superbet_Login_AccountId_CardNo_ValidCredentials_Success {
 		System.out.println("Appium started sucessfully");
 		//driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		driver.navigate().to("https://pashaglobal.com/");
+		driver.navigate().to("https://onlinegames.pashaglobal.com");
 
 	   //clicking on login button and entering valid credentials
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("UnserlnkLogin")));
 		driver.findElement(By.id("UnserlnkLogin")).click();
 		Thread.sleep(2000);
@@ -69,11 +69,10 @@ public class Mobile_Superbet_Login_AccountId_CardNo_ValidCredentials_Success {
 		System.out.println("Login with valid mail ID is successfull");
 		
 		//Logoff from the account 
-		WebElement logoff = driver.findElement(By.id("HambergerMenuBtn"));
+		WebElement logoff = driver.findElement(By.id("login_but"));
 		logoff.click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("(//*[text()='Log off'])[2]")).click();
 		Thread.sleep(5000);
+
 		
 		//Login with valid Account ID
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("UnserlnkLogin")));

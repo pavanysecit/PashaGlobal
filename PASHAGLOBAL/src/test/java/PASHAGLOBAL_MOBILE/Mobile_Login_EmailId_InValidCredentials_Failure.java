@@ -39,7 +39,7 @@ public class Mobile_Login_EmailId_InValidCredentials_Failure {
 		System.out.println("Appium started sucessfully");
 		//driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		driver.navigate().to("https://pashaglobal.com/");
+		driver.navigate().to("https://onlinegames.pashaglobal.com");
 	}
 
 	@When("^Mobile: Open the chrome browser, Enter the valid URL, click on Go button, click on login button,, enter invalid email id & password and click on Login butotn$")
@@ -77,7 +77,7 @@ public class Mobile_Login_EmailId_InValidCredentials_Failure {
 		Thread.sleep(2000);
 		
 		String actual1 = driver.findElement(By.xpath("/html/body/div[18]/div[1]/div/div/div[1]/div[1]/div/span[2]")).getText();
-		String expected1 = "Please verify your email and password!";
+		String expected1 = "Please verify your email and password!!";
 		Assert.assertEquals(expected1, actual1);
 	}
 

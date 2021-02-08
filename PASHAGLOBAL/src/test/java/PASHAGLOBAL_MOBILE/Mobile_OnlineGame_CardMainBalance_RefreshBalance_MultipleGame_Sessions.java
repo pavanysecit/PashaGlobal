@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.util.List;
 import org.junit.Assert;
@@ -17,12 +18,12 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 
 
-public class Mobile_OnlineGame_CardMainBalance_RefreshBalance_MultipleGame_Sessions {
+public class Mobile_OnlineGame_CardMainBalance_RefreshBalance_MultipleGame_Sessions extends Mobile_PashaGlobal_URL_CardLogin  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_CardMainBalance_RefreshBalance_MultipleGame_Sessions() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_CardLogin.getDriver();
-	}
+	public  Mobile_OnlineGame_CardMainBalance_RefreshBalance_MultipleGame_Sessions() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_CardLogin();
+		}
 
 	@Given("^Mobile: Chrome browser, valid URL, valid Card login details, Online games link, main balance, transfer button, Play Now link, spin button , multiple tabs and game sessions$")
 	public void mobile_Chrome_browser_valid_URL_valid_Card_login_details_Online_games_link_main_balance_transfer_button_Play_Now_link_spin_button_multiple_tabs_and_game_sessions() throws Throwable {
@@ -32,7 +33,7 @@ public class Mobile_OnlineGame_CardMainBalance_RefreshBalance_MultipleGame_Sessi
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid Card login details, transfer the amount, click on spin button and check the main updated pasha global balance and open another game sessions and play the game and switch to old game session$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_Card_login_details_transfer_the_amount_click_on_spin_button_and_check_the_main_updated_pasha_global_balance_and_open_another_game_sessions_and_play_the_game_and_switch_to_old_game_session() throws Throwable {
 
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 160);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("HambergerMenuBtn")));
 
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));

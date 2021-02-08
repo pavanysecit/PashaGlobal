@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -13,16 +15,17 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
 
-public class Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance {
+public class Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance extends Mobile_PashaGlobal_URL_CardLogin  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_CardLogin.getDriver();
-	}
+	public  Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_CardLogin();
+		}
+
 
 	@Given("^Mobile: Chrome browser, valid URL, valid Card login details, Online games link, balance, transfer button, Play Now link, spin button , win amount, Red button and collect button$")
 	public void mobile_Chrome_browser_valid_URL_valid_Card_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_win_amount_Red_button_and_collect_button() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
 		System.out.println("balance: "+str11);
@@ -169,7 +172,9 @@ public class Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance
 		System.out.println("Balance after refreshing automatically is: " +ARbalance);
 
 		//Balance should be same
-		Assert.assertEquals(fbal, ARbalance);
+		
+		String ARbalance1 = ARbalance.replaceAll(",", "");
+		Assert.assertEquals(fbal, ARbalance1);
 	}
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid Card login details, transfer the amount, click on spin button till user win , Click on Gamble button, Click on Red button and check the balance after Gamble win$")
@@ -321,7 +326,9 @@ public class Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance
 		System.out.println("Balance after refreshing automatically is: " +ARbalance);
 
 		//Balance should be same
-		Assert.assertEquals(fbal, ARbalance);
+		String fbal1 = fbal.replaceAll(",", "");
+		String ARbalance1 = ARbalance.replaceAll(",", "");
+		Assert.assertEquals(fbal1,ARbalance1);
 	}
 
 	@Then("^Mobile: Gamble Win amount should get added to the game main balance after win and balance should get added to the main card balance after closing slot game$")

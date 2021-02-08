@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.time.Duration;
 import org.junit.Assert;
 import org.openqa.selenium.By;
@@ -16,12 +17,12 @@ import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance {
+public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance extends Mobile_PashaGlobal_URL_CardLogin  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_CardLogin.getDriver();
-	}
+	public  Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_CardLogin();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid Card login details, Online games link, balance, transfer button, Play Now link, spin button and win amount$")
 	public void mobile_Chrome_browser_valid_URL_valid_Card_login_details_Online_games_link_balance_transfer_button_Play_Now_link_spin_button_and_win_amount() throws Throwable {
@@ -30,7 +31,7 @@ public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance {
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the Card valid login details, transfer the amount to slot game, click on spin button till user win and check the balance after win$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_Card_valid_login_details_transfer_the_amount_to_slot_game_click_on_spin_button_till_user_win_and_check_the_balance_after_win() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 80);
+		WebDriverWait wait = new WebDriverWait(driver, 160);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		String str11 = driver.findElement(By.id("DisplayBalance1")).getText();
 		System.out.println("balance: "+str11);
@@ -40,10 +41,8 @@ public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance {
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-//		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-//		playnow.click();
-		Thread.sleep(5000);
-		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
+		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
+		playnow.click();
 		Thread.sleep(5000);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));
@@ -156,14 +155,16 @@ public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance {
 		StringBuffer str21 = new StringBuffer(str111);
 		System.out.println(str21.replace(0,5,""));
 		String ARbalance = str21.toString();
-		System.out.println("Balance after refreshing automatically is: " +ARbalance);
+		String str7 = ARbalance.replaceAll(",", "");
+		System.out.println("Balance after refreshing automatically is: " +str7);
 		
 		//Balance should be same
-		Assert.assertEquals(fbal, ARbalance);
+		Assert.assertEquals(fbal, str7);
 	}
 
 	@Then("^Mobile: Win amount should get added to the main slot balance after win and balance should get added to the main account card balance after closing slot game$")
 	public void mobile_Win_amount_should_get_added_to_the_main_slot_balance_after_win_and_balance_should_get_added_to_the_main_account_card_balance_after_closing_slot_game() throws Throwable {
+		Thread.sleep(2000);
 		driver.quit();
 	}
 }

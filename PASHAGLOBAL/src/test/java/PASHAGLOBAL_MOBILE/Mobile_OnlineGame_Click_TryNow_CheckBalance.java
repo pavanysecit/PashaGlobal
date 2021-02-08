@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,12 +14,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class OnlineGame_Click_TryNow_CheckBalance {
+public class Mobile_OnlineGame_Click_TryNow_CheckBalance extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public OnlineGame_Click_TryNow_CheckBalance() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_Click_TryNow_CheckBalance() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, Go button, valid login details, Online games link, Try Now link and default balance$")
 	public void mobile_Chrome_browser_valid_URL_Go_button_valid_login_details_Online_games_link_Try_Now_link_and_default_balance() throws Throwable {
@@ -26,13 +28,14 @@ public class OnlineGame_Click_TryNow_CheckBalance {
 
 	@When("^Mobile: Navigate to pasha global website by entering valid URL, click on online games link, click on Try Now link on any slot game and check balance$")
 	public void mobile_Navigate_to_pasha_global_website_by_entering_valid_URL_click_on_online_games_link_click_on_Try_Now_link_on_any_slot_game_and_check_balance() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 160);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		//Clicking on Try Now link
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();
 		Thread.sleep(8000);
-		WebElement trynow = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]//following::li"));
+		//WebElement trynow = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]//following::li"));
+		WebElement trynow = driver.findElement(By.xpath("//*[@id='AjaxLoadGameListMobile']/li[5]/div[1]/div/div[2]/ul/li[2]"));
 		String actual1 = trynow.getText();
 		String expected1 = "Try Now";
 		Assert.assertEquals(expected1, actual1);

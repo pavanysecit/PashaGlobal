@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -15,12 +17,12 @@ import io.appium.java_client.MobileElement;
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class Mobile_OnlineGame_CardBalance_EGT_Multiple_GameSessions_Validations {
+public class Mobile_OnlineGame_CardBalance_EGT_Multiple_GameSessions_Validations extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_CardBalance_EGT_Multiple_GameSessions_Validations() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_CardLogin.getDriver();
-	}
+	public  Mobile_OnlineGame_CardBalance_EGT_Multiple_GameSessions_Validations() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 
 	@Given("^Mobile: Chrome browser, valid URL, valid Card login details, Online games link, main balance, transfer button, EGT Play Now link, spin button , multiple game link, user error message$")
 	public void mobile_Chrome_browser_valid_URL_valid_Card_login_details_Online_games_link_main_balance_transfer_button_EGT_Play_Now_link_spin_button_multiple_game_link_user_error_message() throws Throwable {
@@ -30,7 +32,7 @@ public class Mobile_OnlineGame_CardBalance_EGT_Multiple_GameSessions_Validations
 	@When("^Mobile: Open any online slot game by entering the valid URL in browser, enter the valid Card login details, transfer the amount, click on spin button and try to open new EGT games and transfer balance to the game$")
 	public void mobile_Open_any_online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_Card_login_details_transfer_the_amount_click_on_spin_button_and_try_to_open_new_EGT_games_and_transfer_balance_to_the_game() throws Throwable {
 	
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("HambergerMenuBtn")));
 
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
@@ -79,9 +81,9 @@ public class Mobile_OnlineGame_CardBalance_EGT_Multiple_GameSessions_Validations
 
 		balT.clear();
 		Thread.sleep(2000);
-		balT.sendKeys("500");
+		balT.sendKeys("50");
 		Thread.sleep(2000);
-		System.out.println("Transferring balance is: 500 ");
+		System.out.println("Transferring balance is: 50");
 		driver.findElement(By.className("Transfer_EGT_ok_but")).click();
 		Thread.sleep(5000);
 

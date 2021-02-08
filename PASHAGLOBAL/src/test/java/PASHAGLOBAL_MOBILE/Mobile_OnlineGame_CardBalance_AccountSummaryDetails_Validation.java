@@ -1,5 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,12 +16,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation {
+public class Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation extends Mobile_PashaGlobal_URL_CardLogin{
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_CardLogin.getDriver();
-	}
+	public  Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_CardLogin();
+		}
 
 	@Given("^Mobile: Chrome browser, valid URL, valid Card login details, Online games link, main balance, Account Summary tab, print button and PDF file$")
 	public void mobile_Chrome_browser_valid_URL_valid_Card_login_details_Online_games_link_main_balance_Account_Summary_tab_print_button_and_PDF_file() throws Throwable {
@@ -29,7 +30,7 @@ public class Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation {
 
 	@When("^Mobile: Open any online slot game by entering the valid URL in browser, enter the valid Card login details, click on Account and print the account summary$")
 	public void mobile_Open_any_online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_Card_login_details_click_on_Account_and_print_the_account_summary() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 
 		//Fetch the Account ID
@@ -48,19 +49,19 @@ public class Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation {
 		String mbal = MainBal.getText();
 		System.out.println("Account Main Balance: "+ mbal);
 
-		String cardbalance=null;
-		String cardbal=null;
-		if(mbal.endsWith("0")){
-			cardbalance = mbal;
-			cardbal =cardbalance+"   SRD";
-			System.out.println(cardbal);
-		}
-		else {
-			cardbalance = mbal+"0";
-			cardbal = cardbalance+"   SRD";
-			System.out.println(cardbal);
-			System.out.println("Card Balance amount doesn't ends with '0' hence added to verify with the Account Summary.");
-		}
+		String cardbalance=mbal+"   SRD";
+//		String cardbal=null;
+//		if(mbal.endsWith("0")){
+//			cardbalance = mbal;
+//			cardbal =cardbalance+"   SRD";
+//			System.out.println(cardbal);
+//		}
+//		else {
+//			cardbalance = mbal+"0";
+//			cardbal = cardbalance+"   SRD";
+//			System.out.println(cardbal);
+//			System.out.println("Card Balance amount doesn't ends with '0' hence added to verify with the Account Summary.");
+//		}
 
 		WebElement AccountSummary = driver.findElement(By.xpath("//*[@id='GridAccountSummary']"));
 		System.out.println("Account Summary details for the card login: "+ AccountSummary.getText());
@@ -85,7 +86,7 @@ public class Mobile_OnlineGame_CardBalance_AccountSummaryDetails_Validation {
 		Assert.assertEquals("Date", Date.getText());
 		Assert.assertEquals(date1, currentdate.getText());
 		Assert.assertEquals("Balance", Balance.getText());
-		Assert.assertEquals(cardbal, verifybal);
+		Assert.assertEquals(cardbalance, verifybal);
 
 		System.out.println("Verified the Account Summary details and are validated");
 

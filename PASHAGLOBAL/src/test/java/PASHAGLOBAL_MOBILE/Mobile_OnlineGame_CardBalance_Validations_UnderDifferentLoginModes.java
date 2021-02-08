@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,17 +14,17 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGame_CardBalance_Validations_UnderDifferentLoginModes {
+public class Mobile_OnlineGame_CardBalance_Validations_UnderDifferentLoginModes extends Mobile_PashaGlobal_URL_Login {
 
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_CardBalance_Validations_UnderDifferentLoginModes() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_CardBalance_Validations_UnderDifferentLoginModes() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 
 	@Given("^Mobile: Chrome browser, valid URL, different Valid login credentials, card details login, card balance and refresh button$")
 	public void mobile_Chrome_browser_valid_URL_different_Valid_login_credentials_card_details_login_card_balance_and_refresh_button() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 	}
 
@@ -110,12 +112,10 @@ public class Mobile_OnlineGame_CardBalance_Validations_UnderDifferentLoginModes 
 		System.out.println("On multiple switchover alert pop not generated: "+alertpopup);
 
 		// Logoff from the device 
-		WebElement hamburger = driver.findElement(By.id("HambergerMenuBtn"));
-		hamburger.click();
-		Thread.sleep(2000);
-		WebElement logoff = driver.findElement(By.linkText("Log off"));
-		logoff.click();
-		Thread.sleep(5000);
+		driver.findElement(By.id("HambergerMenuBtn")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.linkText("Log out")).click();
+		Thread.sleep(6000);
 
 
 		//Login via card number
@@ -136,7 +136,9 @@ public class Mobile_OnlineGame_CardBalance_Validations_UnderDifferentLoginModes 
 		System.out.println("Card balance when login via card: "+ Cbal);
 		
 		//Validation for balance for different login forms for same account id
-		Assert.assertEquals(cb1, Cbal);
+		String cb2 = cb1.replaceAll(",", "");
+		String Cbal1 = Cbal.replaceAll(",", "");
+		Assert.assertEquals(cb2, Cbal1);
 		System.out.println("Card Balance is same and verifed under different login credentials for same account id" );
 		
 		//Verify the cashout is available for the user for card login modes

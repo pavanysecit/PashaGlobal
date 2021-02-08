@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -12,12 +14,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
 
-public class Mobile_OnlineGames_Balance_Login_LogOff_Validations {
+public class Mobile_OnlineGames_Balance_Login_LogOff_Validations extends Mobile_PashaGlobal_URL_Login  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_Balance_Login_LogOff_Validations() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGames_Balance_Login_LogOff_Validations() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, valid login details, Online games link, balance, transfer button, Play Now link, home button, login and logout buttons$")
 	public void mobile_Chrome_browser_valid_URL_valid_login_details_Online_games_link_balance_transfer_button_Play_Now_link_home_button_login_and_logout_buttons() throws Throwable {
@@ -26,7 +28,7 @@ public class Mobile_OnlineGames_Balance_Login_LogOff_Validations {
 
 	@When("^Mobile: Open any Online slot game by entering the valid URL in browser, enter the valid login details, transfer the amount, click on logoff button, click on home butotn and login button$")
 	public void mobile_Open_any_Online_slot_game_by_entering_the_valid_URL_in_browser_enter_the_valid_login_details_transfer_the_amount_click_on_logoff_button_click_on_home_butotn_and_login_button() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 
 	}
@@ -102,7 +104,7 @@ public class Mobile_OnlineGames_Balance_Login_LogOff_Validations {
 		System.out.println(str6.replace(0,7,""));
 		String crrBalance = str6.toString();
 		System.out.println("Balance of the main account after navigating to home page: " +crrBalance);
-		Thread.sleep(5000);
+		Thread.sleep(8000);
 		
 		Assert.assertEquals(Cbalance, crrBalance);
 		
@@ -112,10 +114,10 @@ public class Mobile_OnlineGames_Balance_Login_LogOff_Validations {
 		Thread.sleep(1000);
 		System.out.println("User is not logged out after navigating to home page from slot game window. Test case passed. ");	
 		
-		driver.findElement(By.xpath("//*[@id='HambergerMenuBtn']")).click();
+		driver.findElement(By.id("HambergerMenuBtn")).click();
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//*[text()='Log off'])[2]")).click();
-		Thread.sleep(5000);
+		driver.findElement(By.linkText("Log out")).click();
+		Thread.sleep(6000);
 		
 		boolean login11 = driver.findElement(By.id("UnserlnkLogin")).isDisplayed();
 		System.out.println(login11);	  
@@ -145,9 +147,10 @@ public class Mobile_OnlineGames_Balance_Login_LogOff_Validations {
 		
 		//Logged out from the system and checking whether system is logging-in automatically after navigating clicking on online games tab  or perfomring some tasks
 		driver.findElement(By.id("HambergerMenuBtn")).click();
-		Thread.sleep(2000);
-		driver.findElement(By.xpath("(//*[text()='Log off'])[2]")).click();
-		Thread.sleep(5000);
+		Thread.sleep(3000);
+		driver.findElement(By.linkText("Log out")).click();
+		Thread.sleep(6000);
+
 		
 		WebElement element1 = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element1.click();

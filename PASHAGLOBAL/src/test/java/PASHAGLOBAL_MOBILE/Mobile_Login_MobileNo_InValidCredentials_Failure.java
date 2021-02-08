@@ -39,7 +39,7 @@ public class Mobile_Login_MobileNo_InValidCredentials_Failure {
 		System.out.println("Appium started sucessfully");
 		//driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		driver.navigate().to("https://pashaglobal.com/");
+		driver.navigate().to("https://onlinegames.pashaglobal.com");
 	}
 
 	@When("^Mobile:  Open the chrome browser, Enter the valid URL, click on Go button, click on login button, enter invalid mobile number & password and click on Login butotn for suribet client$")

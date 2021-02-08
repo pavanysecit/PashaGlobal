@@ -1,5 +1,7 @@
 package PASHAGLOBAL_MOBILE;
 
+import java.net.MalformedURLException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
@@ -12,12 +14,12 @@ import cucumber.api.java.en.When;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
-public class Mobile_OnlineGames_CardBalance_Login_LogOff_Validations {
+public class Mobile_OnlineGames_CardBalance_Login_LogOff_Validations extends Mobile_PashaGlobal_URL_CardLogin  {
 	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGames_CardBalance_Login_LogOff_Validations() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_CardLogin.getDriver();
-	}
+	public  Mobile_OnlineGames_CardBalance_Login_LogOff_Validations() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_CardLogin();
+		}
 
 	@Given("^Mobile: Chrome browser, valid URL, valid Card login details, Online games link, main balance, Account ID, Log off, other modules$")
 	public void mobile_Chrome_browser_valid_URL_valid_Card_login_details_Online_games_link_main_balance_Account_ID_Log_off_other_modules() throws Throwable {
@@ -26,7 +28,7 @@ public class Mobile_OnlineGames_CardBalance_Login_LogOff_Validations {
 
 	@When("^Mobile: Login to the Pasha Global account and navigate to online game and later to home and verify the account state and after logout from Pasha Global navigate and online Games$")
 	public void mobile_Login_to_the_Pasha_Global_account_and_navigate_to_online_game_and_later_to_home_and_verify_the_account_state_and_after_logout_from_Pasha_Global_navigate_and_online_Games() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 90);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("spaccountid")));
 
 		WebElement ham = driver.findElement(By.id("HambergerMenuBtn"));
@@ -63,10 +65,11 @@ public class Mobile_OnlineGames_CardBalance_Login_LogOff_Validations {
 		//LogOff from the session and try to navigated to online slotgames 
 //		ham.click();
 		driver.findElement(By.id("HambergerMenuBtn")).click();
+		Thread.sleep(3000);
+		driver.findElement(By.linkText("Log out")).click();
+		Thread.sleep(6000);
 		System.out.println("click is performed");
 		Thread.sleep(3000);
-		driver.findElement(By.xpath("(//*[text()='Log off'])[2]")).click();
-		Thread.sleep(6000);
 		WebElement login = driver.findElement(By.className("login_but"));
 		System.out.println("Account is in logoff state, login button is displayed:"+login.isDisplayed());
 

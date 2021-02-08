@@ -17,8 +17,8 @@ import io.appium.java_client.android.AndroidDriver;
 public class Mobile_PashaGlobal_URL_CardLogin {
 private static AppiumDriver<MobileElement> driver;
 	
-	//@Before	
-	public static void Mobile_PashaGlobal_URL_CardLogin () throws InterruptedException, MalformedURLException {
+
+	public AppiumDriver<MobileElement> Mobile_PashaGlobal_URL_CardLogin() throws InterruptedException, MalformedURLException {
 		DesiredCapabilities cap=new DesiredCapabilities();
 		cap.setCapability("deviceName", "ASUS X00TD");
 		cap.setCapability("udid", "JAAAGF10Z743V8H");
@@ -37,11 +37,11 @@ private static AppiumDriver<MobileElement> driver;
 		System.out.println("Appium started sucessfully");
 		//driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS);
 		
-		driver.navigate().to("https://pashaglobal.com/");
+		driver.navigate().to("https://onlinegames.pashaglobal.com/");
 
 		
 	   //clicking on login button and entering valid credentials
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("UnserlnkLogin")));
 		driver.findElement(By.id("UnserlnkLogin")).click();
 		Thread.sleep(2000);
@@ -66,12 +66,6 @@ private static AppiumDriver<MobileElement> driver;
 		for(String cont:contx){
 			 System.out.println(cont);
 		 }
-//		driver.context("NATIVE_APP");
-//		Thread.sleep(2000);
-	}
-	
-	public static AppiumDriver<MobileElement> getDriver()
-	{
 		return driver;
 	}
 }

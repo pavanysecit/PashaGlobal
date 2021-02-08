@@ -1,7 +1,6 @@
 package PASHAGLOBAL_MOBILE;
 
-import java.awt.Robot;
-import java.awt.event.KeyEvent;
+import java.net.MalformedURLException;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -14,12 +13,12 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.MobileElement;
 
 
-public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow {
-AppiumDriver<MobileElement> driver;
+public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow extends Mobile_PashaGlobal_URL_Login  {
+	AppiumDriver<MobileElement> driver;
 
-	public Mobile_OnlineGame_Clicks_GameInfo_PlayNow() throws InterruptedException {
-		this.driver = Mobile_PashaGlobal_URL_Login.getDriver();
-	}
+	public  Mobile_OnlineGame_Clicks_GameInfo_PlayNow() throws InterruptedException, MalformedURLException {
+			driver = Mobile_PashaGlobal_URL_Login();
+		}
 	
 	@Given("^Mobile: Chrome browser, valid URL, Go button, valid login details, Online games link, Game Info link and PlayNow link$")
 	public void mobile_Chrome_browser_valid_URL_Go_button_valid_login_details_Online_games_link_Game_Info_link_and_PlayNow_link() throws Throwable {
@@ -28,14 +27,15 @@ AppiumDriver<MobileElement> driver;
 
 	@When("^Mobile: Navigate to pasha global website by entering valid URL, click on online games link, click on Game Info link on any slot game and Click on PlayNow link$")
 	public void mobile_Navigate_to_pasha_global_website_by_entering_valid_URL_click_on_online_games_link_click_on_Game_Info_link_on_any_slot_game_and_Click_on_PlayNow_link() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 120);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		//Clicking on GameInfo link
 
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();
 		Thread.sleep(8000);
-		WebElement gameinfo = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]"));
+		//WebElement gameinfo = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]"));
+		WebElement gameinfo = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[2]/ul/li[1]"));
 		String actual = gameinfo.getText();
 		String expected = "Game Info";
 		Assert.assertEquals(expected, actual);
@@ -64,7 +64,7 @@ AppiumDriver<MobileElement> driver;
 		playnow.click();
 		Thread.sleep(5000);
 
-		WebDriverWait wait = new WebDriverWait(driver, 60);
+		WebDriverWait wait = new WebDriverWait(driver, 90);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
