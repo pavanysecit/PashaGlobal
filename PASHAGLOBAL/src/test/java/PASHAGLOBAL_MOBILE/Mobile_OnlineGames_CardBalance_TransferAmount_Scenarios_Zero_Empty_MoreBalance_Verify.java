@@ -108,7 +108,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		Thread.sleep(4000);
 
 		String actual = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String expected = "Entered Amount Should not be Greater then Current balance!";
+	    String expected = "Entered Amount Should not be Greater than Current balance!";
 	    Assert.assertEquals(actual, expected);
 	    Thread.sleep(2000);
  
@@ -138,7 +138,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		Thread.sleep(2000);
 		
 		String expected2 = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String actual2 = "Entered Amount should be greater then Zero!";
+	    String actual2 = "Entered Amount should be greater than Zero!";
 	    System.out.println("Validation message displayed is: " +expected2);
 	    Assert.assertEquals(expected2, actual2);
 	}

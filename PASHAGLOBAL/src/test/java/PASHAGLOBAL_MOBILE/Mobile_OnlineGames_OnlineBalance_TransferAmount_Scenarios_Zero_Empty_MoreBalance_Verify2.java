@@ -92,7 +92,7 @@ public class Mobile_OnlineGames_OnlineBalance_TransferAmount_Scenarios_Zero_Empt
 		Thread.sleep(4000);
 
 		String actual = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String expected = "Entered Amount Should not be Greater then Current balance!";
+	    String expected = "Entered Amount Should not be Greater than Current balance!";
 	    Assert.assertEquals(actual, expected);
 	    Thread.sleep(2000);
  
@@ -123,13 +123,13 @@ public class Mobile_OnlineGames_OnlineBalance_TransferAmount_Scenarios_Zero_Empt
 		Thread.sleep(2000);
 		
 		String expected2 = driver.findElement(By.id("spnValidateBalance")).getText();
-	    String actual2 = "Entered Amount should be greater then Zero!";
+	    String actual2 = "Entered Amount should be greater than Zero!";
 	    System.out.println("Validation message displayed is: " +expected2);
 	    Assert.assertEquals(expected2, actual2);
 	}
 	
-	@Then("^The exact amount entered in the transfer page should transfer to online game and same amount should get displayed on the balance section$")
-	public void the_exact_amount_entered_in_the_transfer_page_should_transfer_to_online_game_and_same_amount_should_get_displayed_on_the_balance_section() throws Throwable {
+	@Then("^The exact amount entered in the transfer page should transfer to online game and same amount should get displayed on the b$")
+	public void the_exact_amount_entered_in_the_transfer_page_should_transfer_to_online_game_and_same_amount_should_get_displayed_on_the_b() throws Throwable {
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
 		Thread.sleep(1000);
