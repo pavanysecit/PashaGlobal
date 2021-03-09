@@ -36,8 +36,8 @@ public class Mobile_OnlineGames_OnlineBalance_TransferAmount_Scenarios_Zero_Empt
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-		playnow.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")));
+		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
 		Thread.sleep(5000);
 	}
 	
@@ -128,8 +128,8 @@ public class Mobile_OnlineGames_OnlineBalance_TransferAmount_Scenarios_Zero_Empt
 	    Assert.assertEquals(expected2, actual2);
 	}
 	
-	@Then("^The exact amount entered in the transfer page should transfer to online game and same amount should get displayed on the b$")
-	public void the_exact_amount_entered_in_the_transfer_page_should_transfer_to_online_game_and_same_amount_should_get_displayed_on_the_b() throws Throwable {
+	@Then("^The exact amount entered in the transfer page should transfer to online game and same amount should get displayed on the balance section$")
+	public void the_exact_amount_entered_in_the_transfer_page_should_transfer_to_online_game_and_same_amount_should_get_displayed_on_the_balance_section() throws Throwable {
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
 		Thread.sleep(1000);

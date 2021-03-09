@@ -52,8 +52,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-		playnow.click();
+		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
 		Thread.sleep(5000);
 	}
 
@@ -148,7 +147,7 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
 		Thread.sleep(1000);
-		balT.sendKeys("300");
+		balT.sendKeys("100");
 		Thread.sleep(1000);
 		driver.findElement(By.className("Transfer_EGT_ok_but")).click();
 		Thread.sleep(1000);
@@ -167,12 +166,12 @@ public class Mobile_OnlineGames_CardBalance_TransferAmount_Scenarios_Zero_Empty_
 		driver.context("NATIVE_APP");
 		Thread.sleep(2000);
 		
-		WebDriverWait wait2 = new WebDriverWait(driver, 90);
+		WebDriverWait wait2 = new WebDriverWait(driver, 160);
 		wait2.until(ExpectedConditions.visibilityOfElementLocated(By.id("hud_Hud_txtBalance1")));
 		
 		String actual3 = driver.findElement(By.id("hud_Hud_txtBalance1")).getText();
 		System.out.println("Balance transferred from card to online slot game is : "+actual3);
-	    String expected3 = "300.00";
+	    String expected3 = "100.00";
 	    Assert.assertEquals(actual3, expected3);
 	    
 	    

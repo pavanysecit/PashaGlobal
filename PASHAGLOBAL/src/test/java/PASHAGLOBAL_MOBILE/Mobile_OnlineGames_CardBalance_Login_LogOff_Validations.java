@@ -84,8 +84,7 @@ public class Mobile_OnlineGames_CardBalance_Login_LogOff_Validations extends Mob
 //		driver.findElement(By.className("new_ok_but")); 
 		//		System.out.println("Account still logoff state, login button is displayed:"+login.isDisplayed());
 
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-		playnow.click();
+		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
 		Thread.sleep(5000);
 
 		driver.switchTo().alert();

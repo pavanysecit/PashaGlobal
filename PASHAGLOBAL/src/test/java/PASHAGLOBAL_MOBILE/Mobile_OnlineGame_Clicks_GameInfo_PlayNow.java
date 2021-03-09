@@ -27,7 +27,7 @@ public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow extends Mobile_PashaGloba
 
 	@When("^Mobile: Navigate to pasha global website by entering valid URL, click on online games link, click on Game Info link on any slot game and Click on PlayNow link$")
 	public void mobile_Navigate_to_pasha_global_website_by_entering_valid_URL_click_on_online_games_link_click_on_Game_Info_link_on_any_slot_game_and_Click_on_PlayNow_link() throws Throwable {
-		WebDriverWait wait = new WebDriverWait(driver, 120);
+		WebDriverWait wait = new WebDriverWait(driver, 160);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		//Clicking on GameInfo link
 
@@ -35,7 +35,7 @@ public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow extends Mobile_PashaGloba
 		element.click();
 		Thread.sleep(8000);
 		//WebElement gameinfo = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]"));
-		WebElement gameinfo = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[2]/ul/li[1]"));
+		WebElement gameinfo = driver.findElement(By.xpath("/html/body/div[19]/div[4]/div/div/div[2]/div[1]/div[2]/div/div/div/div/div[1]/ul/li[7]/div[1]/div/div[2]/ul/li[1]"));
 		String actual = gameinfo.getText();
 		String expected = "Game Info";
 		Assert.assertEquals(expected, actual);
@@ -57,7 +57,7 @@ public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow extends Mobile_PashaGloba
 	public void mobile_game_info_page_for_particular_slot_game_should_get_displayed() throws Throwable {
 		// Clicking on Play Now link
 		//WebElement playnow = driver.findElement(By.xpath("//*[contains(@onclick,'machineName=FruitClub&GameId=52')]"));
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[4]/div[1]/div/div[1]/div"));
+		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[6]/div[1]/div/div[1]/div"));
 		String actual2 = playnow.getText();
 		String expected2 = "PLAY NOW";
 		Assert.assertEquals(expected2, actual2);

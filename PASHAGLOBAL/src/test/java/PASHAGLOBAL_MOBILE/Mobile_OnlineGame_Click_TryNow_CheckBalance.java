@@ -35,7 +35,7 @@ public class Mobile_OnlineGame_Click_TryNow_CheckBalance extends Mobile_PashaGlo
 		element.click();
 		Thread.sleep(8000);
 		//WebElement trynow = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]//following::li"));
-		WebElement trynow = driver.findElement(By.xpath("//*[@id='AjaxLoadGameListMobile']/li[5]/div[1]/div/div[2]/ul/li[2]"));
+		WebElement trynow = driver.findElement(By.xpath("/html/body/div[19]/div[4]/div/div/div[2]/div[1]/div[2]/div/div/div/div/div[1]/ul/li[7]/div[1]/div/div[2]/ul/li[2]"));
 		String actual1 = trynow.getText();
 		String expected1 = "Try Now";
 		Assert.assertEquals(expected1, actual1);

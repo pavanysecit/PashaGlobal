@@ -58,7 +58,7 @@ WebDriver driver;
 		driver.findElement(By.id("btnLogin")).click();
 		Thread.sleep(3000);
 		
-		WebDriverWait wait = new WebDriverWait(driver, 120);
+		WebDriverWait wait = new WebDriverWait(driver, 160);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("DisplayBalance1")));
 		boolean menu = driver.findElement(By.id("DisplayBalance1")).isDisplayed();
 		Assert.assertTrue(menu);

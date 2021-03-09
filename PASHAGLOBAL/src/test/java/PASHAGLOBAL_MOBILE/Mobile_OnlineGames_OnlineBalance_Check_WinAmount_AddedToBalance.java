@@ -41,8 +41,8 @@ public class Mobile_OnlineGames_OnlineBalance_Check_WinAmount_AddedToBalance ext
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-		playnow.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")));
+		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
 		Thread.sleep(5000);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));

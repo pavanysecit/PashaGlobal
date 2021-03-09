@@ -41,8 +41,7 @@ public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance exten
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-		playnow.click();
+		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
 		Thread.sleep(5000);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));
@@ -54,7 +53,7 @@ public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance exten
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
 		Thread.sleep(1000);
-		balT.sendKeys("555.35");
+		balT.sendKeys("100.11");
 		Thread.sleep(2000);
 		System.out.println("Transferring balance is: 555.35 ");
 		driver.findElement(By.className("Transfer_EGT_ok_but")).click();
@@ -63,7 +62,7 @@ public class Mobile_OnlineGames_CardBalance_Check_WinAmount_AddedToBalance exten
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hud_Hud_txtBalance1"))); 
 		String Sbalance = driver.findElement(By.id("hud_Hud_txtBalance1")).getText();
-		String expected = "555.35";
+		String expected = "111.11";
 		Assert.assertEquals(Sbalance, expected);
 		System.out.println("Current balance of the account is: " +Sbalance);
 		

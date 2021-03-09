@@ -62,7 +62,7 @@ public class Mobile_Login_CardNo_InValidCredentials_Failure {
 		Thread.sleep(3000);
 		
 		String actual = driver.findElement(By.xpath("/html/body/div[18]/div[1]/div/div/div[1]/div[1]/div/span[2]")).getText();
-		String expected = "Please Enter a Valid Card Number and Pin!";
+		String expected = "Please Enter a Valid Card Number and Pin-6 !";
 		Assert.assertEquals(expected, actual);
 		
 		UN.clear();

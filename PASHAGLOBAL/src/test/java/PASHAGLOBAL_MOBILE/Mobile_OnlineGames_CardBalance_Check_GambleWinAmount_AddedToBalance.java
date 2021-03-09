@@ -51,7 +51,7 @@ public class Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();
 		Thread.sleep(1000);
-		balT.sendKeys("555");
+		balT.sendKeys("100.11");
 		Thread.sleep(2000);
 		System.out.println("Transferring balance is: 555 ");
 		driver.findElement(By.className("Transfer_EGT_ok_but")).click();
@@ -60,7 +60,7 @@ public class Mobile_OnlineGames_CardBalance_Check_GambleWinAmount_AddedToBalance
 		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("hud_Hud_txtBalance1"))); 
 		String Sbalance = driver.findElement(By.id("hud_Hud_txtBalance1")).getText();
-		String expected = "555.00";
+		String expected = "100.11";
 		Assert.assertEquals(Sbalance, expected);
 		System.out.println("Current balance of the account is: " +Sbalance);
 
