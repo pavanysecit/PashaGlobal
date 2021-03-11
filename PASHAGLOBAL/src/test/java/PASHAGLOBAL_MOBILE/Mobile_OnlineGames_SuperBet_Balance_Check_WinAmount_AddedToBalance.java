@@ -41,8 +41,8 @@ public class Mobile_OnlineGames_SuperBet_Balance_Check_WinAmount_AddedToBalance 
 		element.click();
 		Thread.sleep(8000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[6]/div[1]/div/div[1]/div"));
-		playnow.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")));
+		driver.findElement(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")).click();
 		Thread.sleep(5000);
 
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));

@@ -39,8 +39,8 @@ public class Mobile_OnlineGame_Multiptile_LoginSessions extends Mobile_PashaGlob
 		element.click();
 		Thread.sleep(24000);
 		// Clicking on Play Now link
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[5]/div[1]/div/div[1]/div"));
-		playnow.click();
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")));
+		driver.findElement(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")).click();
 		Thread.sleep(5000);
 		System.out.println("game click");
 		

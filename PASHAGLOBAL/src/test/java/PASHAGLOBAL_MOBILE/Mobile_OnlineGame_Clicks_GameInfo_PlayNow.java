@@ -34,15 +34,15 @@ public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow extends Mobile_PashaGloba
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();
 		Thread.sleep(8000);
-		//WebElement gameinfo = driver.findElement(By.xpath("//*[contains(@onclick,'GameInfo/SG_FruitClub.jpg')]"));
-		WebElement gameinfo = driver.findElement(By.xpath("/html/body/div[19]/div[4]/div/div/div[2]/div[1]/div[2]/div/div/div/div/div[1]/ul/li[7]/div[1]/div/div[2]/ul/li[1]"));
+		WebElement gameinfo = driver.findElement(By.xpath("//*[contains(@onclick,'SG_FruitClub.jpg')]"));
+		//WebElement gameinfo = driver.findElement(By.xpath("/html/body/div[19]/div[4]/div/div/div[2]/div[1]/div[2]/div/div/div/div/div[1]/ul/li[7]/div[1]/div/div[2]/ul/li[1]"));
 		String actual = gameinfo.getText();
 		String expected = "Game Info";
 		Assert.assertEquals(expected, actual);
 		gameinfo.click();
 		
 		//Thread.sleep(30000);
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src ,'/GameInfo/SG_FruitClub.jpg')]")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[contains(@src ,'SG_FruitClub.jpg')]")));
 		boolean image = driver.findElement(By.xpath("//*[contains(@src ,'/GameInfo/SG_FruitClub.jpg')]")).isDisplayed();
 		System.out.println(image);
 		Assert.assertTrue(image);
@@ -56,15 +56,16 @@ public class Mobile_OnlineGame_Clicks_GameInfo_PlayNow extends Mobile_PashaGloba
 	@Then("^Mobile: Game info page for particular slot game should get displayed$")
 	public void mobile_game_info_page_for_particular_slot_game_should_get_displayed() throws Throwable {
 		// Clicking on Play Now link
-		//WebElement playnow = driver.findElement(By.xpath("//*[contains(@onclick,'machineName=FruitClub&GameId=52')]"));
-		WebElement playnow = driver.findElement(By.xpath("/html/body/div[15]/div[4]/div/div/div[2]/div[2]/div/div/div/div/div[1]/ul/li[6]/div[1]/div/div[1]/div"));
+		WebDriverWait wait = new WebDriverWait(driver, 160);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")));
+		WebElement playnow = driver.findElement(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div"));
+		Thread.sleep(5000);
 		String actual2 = playnow.getText();
 		String expected2 = "PLAY NOW";
 		Assert.assertEquals(expected2, actual2);
 		playnow.click();
 		Thread.sleep(5000);
 
-		WebDriverWait wait = new WebDriverWait(driver, 90);
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));
 		MobileElement balT = driver.findElement(By.id("txtTransferedBalance"));
 		balT.clear();

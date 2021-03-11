@@ -64,10 +64,11 @@ public class Mobile_OnlineGames_Balance_Login_LogOff_Validations extends Mobile_
 		WebElement element = driver.findElement(By.cssSelector(".main_menu_active.online_Games"));
 		element.click();
 		Thread.sleep(12000);
-		
-		driver.findElement(By.xpath("//*[contains(normalize-space(@class),'play_now_but all_popup_but') and contains(@onclick,'FruitClub&GameId=52')]")).click();
+		WebDriverWait wait = new WebDriverWait(driver, 160);
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")));
+		driver.findElement(By.xpath("//li[contains(@onclick,'SG_FruitClub.jpg')]/parent::ul/parent::div/parent::div/div/div")).click();
 		Thread.sleep(5000);
-		WebDriverWait wait = new WebDriverWait(driver, 120);
+		
 		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("txtTransferedBalance")));
 		String parentWindow = driver.getWindowHandle();
 		System.out.println(parentWindow);
